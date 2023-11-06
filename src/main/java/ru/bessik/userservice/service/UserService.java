@@ -19,6 +19,12 @@ public class UserService {
 
     private final ClientRepository repository;
 
+    /**
+     * Сохранить клиента
+     *
+     * @param userRequestDto данные клиента
+     * @return сохраненная сущность
+     */
     public UserResponseDto save(UserRequestDto userRequestDto) {
         User user = UserMapper.toEntity(userRequestDto);
         User savedUser = repository.save(user);
@@ -26,12 +32,23 @@ public class UserService {
         return UserMapper.toResponse(savedUser);
     }
 
+    /**
+     * Получить клиента по userId
+     *
+     * @param userId уникальный id клиента
+     * @return сущность клиента
+     */
     public UserResponseDto find(Long userId) {
         User user = repository.findById(userId).orElseThrow(IllegalArgumentException::new);
         log.info("find user {}", user);
         return UserMapper.toResponse(user);
     }
 
+    /**
+     * Получить всех клиентов
+     *
+     * @return список всех клиентов
+     */
     public List<UserResponseDto> findAll() {
         List<UserResponseDto> result = new ArrayList<>();
         repository.findAll()
@@ -39,6 +56,11 @@ public class UserService {
         return result;
     }
 
+    /**
+     * Удалить клиента из базы
+     *
+     * @param userId уникальный id клиента
+     */
     public void delete(Long userId) {
         repository.deleteById(userId);
         log.info("success deleted user by id = {}", userId);
