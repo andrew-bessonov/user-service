@@ -1,9 +1,12 @@
 package ru.bessik.userservice.utils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import ru.bessik.userservice.controller.dto.UserRequestDto;
 import ru.bessik.userservice.controller.dto.UserResponseDto;
 import ru.bessik.userservice.entity.User;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserMapper {
     public static User toEntity(UserRequestDto requestDto) {
         return User.builder()
