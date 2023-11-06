@@ -55,4 +55,20 @@ public class UserController {
         log.error("ERROR");
         return dto;
     }
+
+    /**
+     * Получить фамилию и имя всех клиентов
+     *
+     * @return список с фамилией и именем всех клиентов
+     */
+    @GetMapping("/user/getAllFio")
+    public ResponseDto getFioList2() {
+        log.info("[API] getFioList");
+        List<FioDto> fioList = userService.getFioList();
+        ResponseDto dto = ResponseDto.builder()
+                .listFio(fioList)
+                .status("OK")
+                .build();
+        return dto;
+    }
 }
