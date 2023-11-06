@@ -52,6 +52,7 @@ public class UserController {
                 .listFio(fioList)
                 .status("OK")
                 .build();
+        log.error("ERROR");
         return dto;
     }
 }
